@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Gate</title>
+<style>
+    body {
+        background-color: #111;
+        color: #eee;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 1em;
+    }
+    input[type="text"] {
+        padding: 0.5em;
+        font-size: 1em;
+        border-radius: 5px;
+        border: none;
+        margin-right: 0.5em;
+    }
+    button {
+        padding: 0.5em 1em;
+        font-size: 1em;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        background-color: #444;
+        color: #eee;
+        transition: background-color 0.2s;
+    }
+    button:hover {
+        background-color: #666;
+    }
+    #message {
+        margin-top: 1em;
+        min-height: 1.2em;
+        font-style: italic;
+    }
+    #nextTest {
+        display: none;
+        margin-top: 2em;
+    }
+    a {
+        color: #88f;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<p>I need to make sure you are Ferdawss…</p>
+<p>What was the last message?</p>
+
+<input type="text" id="keyInput" placeholder="Type it here...">
+<button onclick="checkKey()">Submit</button>
+
+<div id="message"></div>
+
+<div id="nextTest">
+    <p><a href="skribbl.html">Skribble.io2</a></p>
+</div>
+
+<script>
+function checkKey() {
+    const input = document.getElementById("keyInput").value.trim().toUpperCase();
+    const message = document.getElementById("message");
+    const next = document.getElementById("nextTest");
+
+    if(input === "HAPPY") {
+        message.textContent = "Ferdawss! I'm glad you found me, I tried to hide more help in this site, I hosted it so you would find it, please proceed with caution.";
+        next.style.display = "block";
+    } else if(input === "") {
+        message.textContent = "Don't leave it empty… the door doesn't like that.";
+    } else {
+        message.textContent = "Hmm… that doesn't seem right. Look around again, maybe the key is hidden in your last discovery.";
+    }
+}
+
+// Optional: allow Enter key to submit
+document.getElementById("keyInput").addEventListener("keydown", function(e) {
+    if(e.key === "Enter") checkKey();
+});
+</script>
+
+</body>
+</html>

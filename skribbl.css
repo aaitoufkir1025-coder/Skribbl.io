@@ -1,0 +1,42 @@
+/* Dark theme and centered layout */
+:root{--bg:#0f1111;--card:#151617;--accent:#7bd389;--muted:#9aa0a6}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b0c0d 0%, #111 60%);color:#e6eef3}
+.wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:560px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:20px;box-shadow:0 6px 24px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+.title{font-size:16px;color:var(--muted);text-align:center;margin-bottom:8px}
+
+/* header/logo removed (kept CSS file for future use) */
+
+/* Image area */
+.stage{display:flex;flex-direction:column;align-items:center;gap:12px}
+.drawing{width:100%;height:320px;background:#0b0b0b;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.drawing img{max-width:100%;max-height:100%;object-fit:contain;display:block;opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease}
+.drawing.show img{opacity:1;transform:translateY(0)}
+
+/* Answers bubble removed (previous answers list) */
+
+/* Input area */
+.controls{width:100%;display:flex;gap:8px;align-items:center}
+input[type="text"]{flex:1;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:#0b0c0d;color:var(--accent);outline:none;font-size:15px}
+button{padding:10px 14px;border-radius:8px;border:0;background:var(--accent);color:#061011;font-weight:600;cursor:pointer}
+button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+
+.msg{height:18px;color:#ff8b8b;font-size:13px;margin-top:6px;text-align:center}
+.hint{color:var(--muted);font-size:13px;text-align:center;margin-top:8px}
+
+/* Congratulatory screen */
+.final{display:none;flex-direction:column;align-items:center;gap:10px;padding:28px}
+.final.show{display:flex}
+.secret{font-size:28px;letter-spacing:3px;color:var(--accent);font-weight:700}
+
+/* Audio control */
+.audio-row{display:flex;justify-content:flex-end;margin-top:10px}
+.audio-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer}
+
+/* Responsive */
+@media (max-width:480px){
+  .drawing{height:220px}
+  .card{padding:16px}
+  input[type="text"]{padding:10px}
+  .answers-bubble{display:none}
+}
