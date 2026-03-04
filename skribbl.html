@@ -1,3 +1,5 @@
+<!-- DO NOT MODIFY IDs OR JAVASCRIPT HOOKS -->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,6 +11,18 @@
 
 <body>
   <div class="wrap">
+    <!-- Start screen: name input, language select, play button -->
+    <div class="start-screen" id="start-screen">
+      <div class="start-row">
+        <input id="player-name" type="text" placeholder="Your name" value="Nebula" autocomplete="off">
+        <select id="language-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+      <button id="play-btn">Play!</button>
+    </div>
 
     <!-- Logo -->
     <div class="top-logo">
@@ -17,14 +31,14 @@
            onerror="this.onerror=null;this.src='image1.png'">
     </div>
 
-    <div class="card" role="main">
+    <div class="card hidden" role="main">
 
       <div class="stage" id="stage">
 
         <!-- Drawing -->
         <div class="drawing-wrapper" style="position:relative;width:100%;">
           <div class="drawing" id="drawing-container">
-            <img id="drawing-img" src="image1.png" alt="drawing">
+            <img id="drawing-img" class="hidden" src="image1.png" alt="drawing">
           </div>
         </div>
 
@@ -74,6 +88,33 @@
     </div>
   </div>
 
+  <script>
+    // UI-only: show lobby first; reveal game and first image after Play is clicked.
+    (function(){
+      const start = document.getElementById('start-screen');
+      const play = document.getElementById('play-btn');
+      const card = document.querySelector('.card');
+      const drawingImg = document.getElementById('drawing-img');
+      const nameInput = document.getElementById('player-name');
+      const answerInput = document.getElementById('answer-input');
+
+      if(!play || !start || !card) return;
+
+      play.addEventListener('click', function(){
+        // hide lobby
+        start.classList.add('hidden');
+
+        // show main card and the first image
+        card.classList.remove('hidden');
+        if(drawingImg) drawingImg.classList.remove('hidden');
+
+        // copy player name into the answer box for convenience (UI-only)
+        if(nameInput && answerInput && nameInput.value.trim()){
+          answerInput.value = nameInput.value.trim();
+        }
+      });
+    })();
+  </script>
   <script src="skribbl.js"></script>
 </body>
 </html>
