@@ -1,0 +1,120 @@
+<!-- DO NOT MODIFY IDs OR JAVASCRIPT HOOKS -->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test 1: Name the Drawing</title>
+  <link rel="stylesheet" href="skribbl.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Start screen: name input, language select, play button -->
+    <div class="start-screen" id="start-screen">
+      <div class="start-row">
+        <input id="player-name" type="text" placeholder="Your name" value="Nebula" autocomplete="off">
+        <select id="language-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+      </div>
+      <button id="play-btn">Play!</button>
+    </div>
+
+    <!-- Logo -->
+    <div class="top-logo">
+      <img src="logo.gif"
+           alt="Logo"
+           onerror="this.onerror=null;this.src='image1.png'">
+    </div>
+
+    <div class="card hidden" role="main">
+
+      <div class="stage" id="stage">
+
+        <!-- Drawing -->
+        <div class="drawing-wrapper" style="position:relative;width:100%;">
+          <div class="drawing" id="drawing-container">
+            <img id="drawing-img" class="hidden" src="image1.png" alt="drawing">
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div style="width:100%">
+          <div class="controls">
+            <input
+              id="answer-input"
+              type="text"
+              placeholder="Type your answer here"
+              autocomplete="off">
+            <button id="submit-btn">Submit</button>
+          </div>
+
+          <div class="msg" id="message"></div>
+
+          <div class="hint" id="hint">
+            I wonder why Ali would draw this ?
+          </div>
+        </div>
+
+        <!-- FINAL SCREEN -->
+        <div class="final" id="final-screen" aria-hidden="true">
+
+          <div id="final-answers"
+               style="font-size:20px;color:var(--accent);font-weight:700">
+          </div>
+
+          <div style="margin-top:12px;text-align:center;">
+            <p>Hey... Ferdawss, you got the drawings.</p>
+            <p>I hope you figured out the key...</p>
+
+            <input id="finalKey"
+                   type="text"
+                   placeholder="The key..."
+                   style="padding:8px 10px;border-radius:6px;">
+
+            <button id="final-submit"
+                    style="margin-left:8px;padding:8px 12px;">
+              Submit
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // UI-only: show lobby first; reveal game and first image after Play is clicked.
+    (function(){
+      const start = document.getElementById('start-screen');
+      const play = document.getElementById('play-btn');
+      const card = document.querySelector('.card');
+      const drawingImg = document.getElementById('drawing-img');
+      const nameInput = document.getElementById('player-name');
+      const answerInput = document.getElementById('answer-input');
+
+      if(!play || !start || !card) return;
+
+      play.addEventListener('click', function(){
+        // hide lobby
+        start.classList.add('hidden');
+
+        // show main card and the first image
+        card.classList.remove('hidden');
+        if(drawingImg) drawingImg.classList.remove('hidden');
+
+        // copy player name into the answer box for convenience (UI-only)
+        if(nameInput && answerInput && nameInput.value.trim()){
+          answerInput.value = nameInput.value.trim();
+        }
+      });
+    })();
+  </script>
+  <script src="skribbl.js"></script>
+</body>
+</html>
